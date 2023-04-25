@@ -57,6 +57,7 @@ class UserLoginView(APIView):
         else:
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
+## class to handle to view after authorization
 class UserProfileView(APIView):
     renderer_classes = [ErrorRenderes]
     permission_classes = [IsAuthenticated]
@@ -64,6 +65,8 @@ class UserProfileView(APIView):
         serializer = UserProfileSerializer(request.user)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
+
+## class to handle when user tries to change its password
 class UserPasswordChangeView(APIView):
     renderer_classes = [ErrorRenderes]
     permission_classes = [IsAuthenticated]
@@ -75,7 +78,7 @@ class UserPasswordChangeView(APIView):
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-
+## class to handle when user tries to access its email link to reset its password
 class UserResetEmailView(APIView):
     renderer_classes = [ErrorRenderes]
     def post(self,request,format=None):
@@ -85,6 +88,7 @@ class UserResetEmailView(APIView):
         else:
             return Response({"msg":"email reset failed"},status=status.HTTP_400_BAD_REQUEST)
 
+## class to handle when user tries to reset its email
 class UserResetPasswordView(APIView):
     renderer_classes = [ErrorRenderes]
     def post(self,request,uid,token,format=None):

@@ -40,11 +40,14 @@ class UserLoginSerializer(ModelSerializer):
         model = User
         fields = ["email","password"]
 
+
+##serializer for viewing the datails after authorization
 class UserProfileSerializer(ModelSerializer): 
     class Meta:
         model = User
         fields = ["id","email","name"]
 
+## serializer for changinf the password
 class UserChangePasswordSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=255,style={'input_type':'password'},write_only=True)
     password2 = serializers.CharField(max_length=255,style={'input_type':'password'},write_only=True)
@@ -60,6 +63,7 @@ class UserChangePasswordSerializer(serializers.Serializer):
         user.save()
         return attrs
 
+## serializer for sending email link to reset the email
 class UserResetEmailSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=255)
     class Meta:
@@ -84,6 +88,7 @@ class UserResetEmailSerializer(serializers.Serializer):
             raise serializers.ValidationError('you are not registered user')
 
 
+## serializer for resetting the password
 class UserResetPasswordSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=255,style={'input_type':'password'},write_only=True)
     password2 = serializers.CharField(max_length=255,style={'input_type':'password'},write_only=True)
