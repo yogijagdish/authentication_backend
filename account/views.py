@@ -26,7 +26,7 @@ def get_tokens_for_user(user):
 
 ## class to handle registration of new user
 class UserRegistrationView(APIView):
-    renderer_classes = [ErrorRenderes]
+    # renderer_classes = [ErrorRenderes]
     def post(self,request,format=None):
         serializer = UserRegistrationSerializer(data=request.data)
 
@@ -53,7 +53,7 @@ class UserLoginView(APIView):
                 token = get_tokens_for_user(user)
                 return Response({'token':token,"msg":"Log in sucessful"},status=status.HTTP_200_OK)
             else:
-                return Response({"errors":{"non_field_errors":['email or password is not valid']}},status=status.HTTP_404_NOT_FOUND)
+                return Response({"error":{"non_field_errors":['Email or Password is Invalid']}},status=status.HTTP_404_NOT_FOUND)
         else:
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 

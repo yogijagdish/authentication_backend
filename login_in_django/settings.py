@@ -148,8 +148,8 @@ EMAIL_USE_TLS = True
 ## allowing to interact with frontend using these origin sites
 CORS_ALLOWED_ORIGINS = [
 
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
 ]
 
 ## settings for JWT (JSON Web Token) in rest framework
@@ -158,6 +158,16 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+
+CORS_REPLACE_HTTPS_REFERER      = False
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False
 
 ## settings of JWT
 SIMPLE_JWT = {
